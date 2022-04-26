@@ -85,11 +85,10 @@ cat 10k_PBMC_3p_nextgem_Chromium_X_fastqs/10k_PBMC_3p_nextgem_Chromium_X_S1_L*_R
 cat 10k_PBMC_3p_nextgem_Chromium_X_fastqs/10k_PBMC_3p_nextgem_Chromium_X_S1_L*_R2*.gz > R2.fastq.gz
 /usr/bin/time -v umi_tools extract --bc-pattern=CCCCCCCCCCCCCCCCNNNNNNNNNN --error-correct-cell --stdin  R1.fastq.gz --stdout R1_extract.fastq.g --read2-in R2.fastq.gz --read2-out R2_extract.fastq.gz --whitelist ./3M-february-2018.txt 1>umitools.log
 /usr/bin/time -v PISA parse2 -rule 'CR,R1:1-16,3M-february-2018.txt.gz,CB,1;R1,R2' R1.fastq.gz R2.fastq.gz -1 reads_1.fq -t 1 -nw 1> parse_t1.log
-/usr/bin/time -v PISA parse2 -rule 'CR,R1:1-16,3M-february-2018.txt,CB,1;R1,R2' R1.fastq.gz R2.fastq.gz -1 reads_1.fq -t 4 -nw 1> parse_t4.log
 
 # Test gene annotation
 wget -c https://s3-us-west-2.amazonaws.com/10x.files/samples/cell-exp/6.1.0/10k_PBMC_3p_nextgem_Chromium_X/10k_PBMC_3p_nextgem_Chromium_X_possorted_genome_bam.bam
 /usr/bin/time -v ./Drop-seq_tools-2.5.1/TagReadWithGeneExonFunction I=10k_PBMC_3p_nextgem_Chromium_X_possorted_genome_bam.bam O=dropseq_anno.bam ANNOTATIONS_FILE=genes.gtf 2>dropseq.log
 /usr/bin/time -v PISA anno -gtf genes.gtf 10k_PBMC_3p_nextgem_Chromium_X_possorted_genome_bam.bam -o anno1.bam -t 1 2>anno_t1.log
-/usr/bin/time -v PISA anno -gtf genes.gtf 10k_PBMC_3p_nextgem_Chromium_X_possorted_genome_bam.bam -o anno1.bam -t 4 2>anno_t1.log
-/usr/bin/time -v PISA anno -gtf genes.gtf 10k_PBMC_3p_nextgem_Chromium_X_possorted_genome_bam.bam -o anno1.bam -t 20 2>anno_t1.log
+/usr/bin/time -v PISA anno -gtf genes.gtf 10k_PBMC_3p_nextgem_Chromium_X_possorted_genome_bam.bam -o anno1.bam -t 4 2>anno_t4.log
+/usr/bin/time -v PISA anno -gtf genes.gtf 10k_PBMC_3p_nextgem_Chromium_X_possorted_genome_bam.bam -o anno1.bam -t 20 2>anno_t20.log
