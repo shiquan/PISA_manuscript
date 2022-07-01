@@ -90,8 +90,6 @@ cat 10k_PBMC_3p_nextgem_Chromium_X_fastqs/10k_PBMC_3p_nextgem_Chromium_X_S1_L*_R
 wget -c https://s3-us-west-2.amazonaws.com/10x.files/samples/cell-exp/6.1.0/10k_PBMC_3p_nextgem_Chromium_X/10k_PBMC_3p_nextgem_Chromium_X_possorted_genome_bam.bam
 /usr/bin/time -v ./Drop-seq_tools-2.5.1/TagReadWithGeneExonFunction I=10k_PBMC_3p_nextgem_Chromium_X_possorted_genome_bam.bam O=dropseq_anno.bam ANNOTATIONS_FILE=genes.gtf 2>dropseq.log
 /usr/bin/time -v PISA anno -gtf genes.gtf 10k_PBMC_3p_nextgem_Chromium_X_possorted_genome_bam.bam -o anno1.bam -t 1 2>anno_t1.log
-<<<<<<< HEAD
-
 
 ########################
 # Section Four
@@ -114,9 +112,3 @@ mkdir -p exp10
 /usr/bin/time -v PISA count -tags CB -anno-tag GN -umi UB -outdir exp10 10k_PBMC_3p_nextgem_Chromium_X_possorted_genome_bam.bam  -t 10  2>thread_10.log
 mkdir -p exp20 
 /usr/bin/time -v PISA count -tags CB -anno-tag GN -umi UB -outdir exp20 10k_PBMC_3p_nextgem_Chromium_X_possorted_genome_bam.bam  -t 20  2>thread_20.log
-
-
-=======
-/usr/bin/time -v PISA anno -gtf genes.gtf 10k_PBMC_3p_nextgem_Chromium_X_possorted_genome_bam.bam -o anno1.bam -t 4 2>anno_t4.log
-/usr/bin/time -v PISA anno -gtf genes.gtf 10k_PBMC_3p_nextgem_Chromium_X_possorted_genome_bam.bam -o anno1.bam -t 20 2>anno_t20.log
->>>>>>> refs/remotes/origin/main
